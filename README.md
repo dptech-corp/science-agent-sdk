@@ -7,7 +7,7 @@
 ### Linux/Mac
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/dptech-corp/science-agent-sdk/refs/heads/feat/master/install.sh | bash
+pip install science-agent-sdk --upgrade
 ```
 
 ### Windows
@@ -15,8 +15,7 @@ curl -sSL https://raw.githubusercontent.com/dptech-corp/science-agent-sdk/refs/h
 在PowerShell中运行：
 
 ```powershell
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/dptech-corp/science-agent-sdk/refs/heads/feat/master/install.sh -OutFile install.sh
-bash install.sh
+pip install science-agent-sdk --upgrade
 ```
 
 ## CLI 使用方法
@@ -27,7 +26,7 @@ bash install.sh
 
 ```bash
 # 获取基础代码结构
-dp-agent fetch scaffolding
+dp-agent fetch scaffolding --type=cloud/calculation/device
 
 # 获取配置文件
 dp-agent fetch config
@@ -40,10 +39,13 @@ dp-agent fetch config
 
 ```bash
 # 运行实验环境
-dp-agent run lab
+dp-agent run tool device
 
 # 运行云环境
-dp-agent run cloud
+dp-agent run tool cloud
+
+# 运行计算环境
+dp-agent run tool calculation
 
 # 运行代理
 dp-agent run agent

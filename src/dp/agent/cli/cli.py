@@ -6,6 +6,7 @@ import shutil
 from pathlib import Path
 import signal
 import uuid
+import requests
 
 from ..server.storage import storage_dict
 
@@ -79,19 +80,25 @@ def config():
     """
     click.echo("Fetching configuration...")
     
-    # 获取模板目录路径
-    templates_dir = Path(__file__).parent / 'templates'
-    current_dir = Path.cwd()
+    # # 获取模板目录路径
+    # templates_dir = Path(__file__).parent / 'templates'
+    # current_dir = Path.cwd()
     
-    # 复制环境配置模板
-    env_template = templates_dir / '.env.template'
-    env_file = current_dir / '.env'
+    # # 复制环境配置模板
+    # env_template = templates_dir / '.env.template'
+    # env_file = current_dir / '.env'
+    
+    remote_env_url = 'https://openfiles.mlops.dp.tech/projects/bohrium-agent/7225627e6f74473fa2bdff58a0dbb584/env-public'
+    env_file = Path.cwd() / '.env'
     
     if env_file.exists():
         click.echo("Warning: .env file already exists. Skipping...")
         click.echo("If you want to create a new .env file, please delete the existing one first.")
     else:
-        shutil.copy2(env_template, env_file)
+        response = requests.get(remote_env_url)
+        with open(env_file, 'w') as f:
+            f.write(response.text)
+        #shutil.copy2(env_template, env_file)
         click.echo("Configuration file .env has been created.")
         click.echo("\nIMPORTANT: Please update the following configurations in your .env file:")
         click.echo("1. MQTT_INSTANCE_ID - Your Aliyun MQTT instance ID")

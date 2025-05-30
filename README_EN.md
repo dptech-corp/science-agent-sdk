@@ -7,7 +7,7 @@ This is DP Tech's Science Agent SDK, providing a command-line tool `dp-agent` fo
 ### Linux/Mac
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/dptech-corp/science-agent-sdk/refs/heads/master/install.sh | bash
+pip install science-agent-sdk --upgrade
 ```
 
 ### Windows
@@ -15,8 +15,7 @@ curl -sSL https://raw.githubusercontent.com/dptech-corp/science-agent-sdk/refs/h
 In PowerShell, run:
 
 ```powershell
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/dptech-corp/science-agent-sdk/refs/heads/master/install.sh -OutFile install.sh
-bash install.sh
+pip install science-agent-sdk --upgrade
 ```
 
 ## Usage
@@ -26,7 +25,7 @@ After installation, you can use the following commands:
 ### Fetch Scaffolding
 
 ```bash
-dp-agent fetch scaffolding
+dp-agent fetch scaffolding --type=cloud/calculation/device
 ```
 
 ### Fetch Configuration
@@ -41,25 +40,30 @@ Note: For security reasons, this feature is only available in internal network e
 ### Run Lab Environment
 
 ```bash
-dp-agent run-lab
+dp-agent run tool device
 ```
 
 ### Run Cloud Environment
 
 ```bash
-dp-agent run-cloud
+dp-agent run tool cloud
+```
+### Run Calculation Environment
+
+```bash
+dp-agent run tool calculation
 ```
 
 ### Run Agent
 
 ```bash
-dp-agent run-agent
+dp-agent run agent
 ```
 
 ### Debug Cloud Environment
 
 ```bash
-dp-agent debug-cloud
+dp-agent run debug
 ```
 
 ## Development Notes
